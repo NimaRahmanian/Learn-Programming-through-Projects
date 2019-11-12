@@ -1,0 +1,14 @@
+radius = float(input("What is the radius: "))
+
+diameter = radius * 2;
+circumference = 2 * 3.14 * radius;
+surface_area = 4.0 * pow(radius, 2) * 3.14;
+#thankfully, python's / operator performs true division, or floating point division
+#4/3 will equal 1.33 repeating
+volume = (4/3) * pow(radius, 3) * 3.14;
+
+print("The diameter is", diameter)
+print("The circumference is", circumference)
+#limit the space of the variable to 10 units
+print(f"The surface_area is {surface_area: 10}")
+print(f"The volume is {volume: 10}")
