@@ -1,0 +1,15 @@
+length = float(input("What is the length of the package: "))
+width = float(input("What is the width of the package: "))
+height = float(input("What is the height of the package: "))
+#boolean operators are spelled out in Python (or, and , not)
+if ( (length > 10) or (width > 10) or (height > 10) ):
+  print("Reject")
+else:
+  print("Accept")
+  volume = length * height * width
+  print("The package dimensions: ")
+  print(length, " x ", width, " x ", height, " inches")
+  print("The package volume: ", volume)
+  price = 0.5
+  cost = price * volume
+  print("The price of the package is : ", cost)
