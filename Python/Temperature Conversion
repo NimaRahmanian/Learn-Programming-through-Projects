@@ -1,0 +1,9 @@
+fahrenheit = float(input("Enter degrees in Fahrenheit: "))
+celsius = (fahrenheit - 32) * (5.0/9.0)
+print("The equivalent in Celsius is", celsius)
+
+celsius = float(input("Enter degrees in Celsius: "))
+fahrenheit = (celsius * 9.0/5.0) + 32
+print("The equivalent in Fahrenheit is", fahrenheit)
+#Python follows the same order of precedence as Java C++ and C
+#the symbols may be different, however
