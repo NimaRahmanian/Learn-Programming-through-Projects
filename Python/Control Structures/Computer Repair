@@ -1,0 +1,19 @@
+print("If computer does beep, input 1. If computer does not beep, input 0.")
+beep = int(input("Input: "))
+print("If hard drive does spin, input 1. If hard drive does not spin, input 0.")
+spin = int(input("Input: "))
+
+#nested if-elif-else structures are nothing different from non-nested structures. only make sure the indentation is appropriate
+if ( not(beep == 1 or beep == 0) or not(spin == 1 or spin == 0) ):
+  print("Bad input!")
+else:
+  if (beep == 1):
+    if (spin == 1):
+      print("Contact Tech. Support")
+    else:
+      print("Check Drive Contacts")
+  else:
+    if (spin == 1):
+      print("Check Speaker Contacts")
+    else:
+      print("Bring Computer to Repair Center")
