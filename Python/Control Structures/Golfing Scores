@@ -1,0 +1,29 @@
+stroke = int(input("Number of strokes: "))
+
+  #nested if--else if--else conditions
+  #general format
+  #if(condition):
+  #elif (condition):
+  #else:
+  #it is imperative that you align the condition statements appropriately
+if (stroke > 0):
+	if (stroke == 1):
+		print("hole in one")
+	elif (stroke == 2):
+		print("double eagle") 
+	elif (stroke == 3):
+		print("eagle")
+	elif (stroke == 4):
+		print("birdie")
+	elif (stroke == 5):
+	  print("par")
+	elif (stroke == 6):
+	  print("bogey")
+	elif (stroke == 7):
+	  print("double bogey") 
+	elif (stroke == 8):
+	  print("triple bogey")
+	else:
+	  print("disaster")
+else:
+	print("Invalid input")
