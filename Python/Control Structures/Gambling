@@ -1,0 +1,23 @@
+import random
+dollars = int(input("How many dollars do you have? "))
+    
+maxDollars = dollars
+countAtMax = 0
+count = 0
+    
+while (dollars > 0):
+  count+=1
+      
+  die1 = random.randint(1,6)
+  die2 = random.randint(1,6)
+      
+  if (die1 + die2 == 7):
+    dollars += 4
+  else:
+    dollars-=1
+      
+  if (dollars > maxDollars):
+    maxDollars = dollars
+    countAtMax = count
+
+print("You are broke after", count, "rolls.", "You should have quit after", countAtMax, "rolls when you had $", maxDollars, ".")
