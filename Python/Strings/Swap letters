@@ -1,0 +1,8 @@
+word = input("Say the word: ")
+length_word = len(word)
+swapped = ""
+swapped += word[length_word-1] #last char
+swapped += word[1:length_word-1]
+swapped += word[0] #first char
+    
+print("Swapped phrase becomes: ", swapped)
