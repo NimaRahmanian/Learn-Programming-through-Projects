@@ -1,0 +1,17 @@
+full_name = input("What is your first and last name?: ")
+#find the lenth of the string object
+name_len = len(full_name)
+print(f"The length of your name: {name_len}")
+
+#.index(" ") returns an error if the substring is not found
+#.find(" ") will return -1 if the substring is not found
+space_index = full_name.find(" ")
+formatted_name = ""
+#to get a substring, use brackets and the arguments are the indexes [start: end] not inclusive of the end
+#[:index] all from start until index
+#[index:] all from index until the end
+formatted_name += full_name[space_index + 1:] #last name
+formatted_name += ", "
+formatted_name += full_name[0: space_index] #first name
+print("Your name is ", formatted_name)
+#all of the above regarding the use of [] is the same for lists and tuples
