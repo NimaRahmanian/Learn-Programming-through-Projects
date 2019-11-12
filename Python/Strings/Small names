@@ -1,0 +1,7 @@
+name = input("Enter name or \"XXX uppercase\" to quit: ")
+count = 0
+while (name.upper() != "XXX"):
+  if (len(name) <= 5):
+    count+=1
+  name = input("Enter name or \"XXX uppercase\" to quit: ")
+print("The number of names less than or equal to 5 letters is ", count)
