@@ -1,0 +1,7 @@
+base = float(input("What is the base: "))
+height = float(input("What is the height: "))
+
+area = base * height
+
+print(f"The area is: {area}") 
+#{} brackets enclose variable names
