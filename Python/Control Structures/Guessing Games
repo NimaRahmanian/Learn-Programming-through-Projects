@@ -1,0 +1,20 @@
+import random
+
+randNum = random.randint(1, 10)
+
+counter = 1
+while (counter < 6):
+  guess = int(input("Guess a number from one to ten: "))
+  if (randNum > guess):
+    print("You guessed too low")
+  elif (randNum < guess):
+    print("You guessed too high")
+  else:
+    guessed_correct = True
+    break
+  counter += 1
+      
+if (guessed_correct):
+  print("Nice job, it only took you", counter, "guesses")
+else:
+  print("No luck. The number was", randNum)
