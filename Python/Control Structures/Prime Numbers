@@ -1,0 +1,12 @@
+import math
+
+number = int(input("Enter an integer greater than 2: "))
+limit = int(math.sqrt(number))
+#range function is not inclusive of the second term
+for d in range(2, limit+1):
+  if (number % d == 0):
+    break
+if (d <= limit):
+  print("Not prime.")
+else:
+  print("Prime.")
