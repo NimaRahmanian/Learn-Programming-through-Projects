@@ -1,0 +1,15 @@
+#len is a reserved word--len()
+def calcArea(length, width):
+    quad_area = length*width
+    return quad_area
+  
+def calcPer(length, width):
+    per = 2*length + 2*width
+    return per
+
+length = int(input("Enter length of quad: "))
+width = int(input("Enter width of quad: "))
+area = calcArea(length, width)
+print("Area of quad with length", length, "and width", width, "is", area)
+per = calcPer(length, width)
+print("Perimeter:", per)
