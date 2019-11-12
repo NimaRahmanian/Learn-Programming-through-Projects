@@ -1,0 +1,15 @@
+removed = "The raIn in SpaiN stays mainly on the plAin."
+reserve = removed[:]
+#remove all instances of 't'
+#if you use .index(), it will raise an exception if not found
+#find() is easier, works more like .indexOf() in Java
+index = removed.lower().find("t")
+while (index != -1):
+  removed = removed[0 : index] + removed[index+1:]
+  index = removed.lower().find("t")
+index = removed.lower().find("s")
+while (index != -1):
+  removed = removed[0 : index] + removed[index+1:]
+  index = removed.lower().find("s")
+
+print(removed)
