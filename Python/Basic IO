@@ -1,0 +1,15 @@
+print("Hello, enter your name: ")
+#input string values
+name = input()
+print("Your name is", name)
+print("And your age please: ")
+#input integer values
+age = int(input())
+print("Your age is", age)
+print("What is your GPA? ")
+#input double values
+gpa = float(input())
+print("Your GPA is", gpa)
+#combine print statement and input statement
+phone_number = input("What is your phone number? ")
+print("Your phone number is", phone_number)
