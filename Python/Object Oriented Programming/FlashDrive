@@ -1,0 +1,136 @@
+class FlashDrive:
+
+  #in Python, instance variables 
+  #moreover, in Python, the use of the self keyword to indicate instance variables and methods is mandatory for all cases
+
+  #you must have at most one constructor in Python
+  #unlike C++ and Java, there is only one
+  #the use of default values will do the job
+  def __init__(self, capacity = 0, used = 0, pluggedIn = False):
+    self.my_StorageCapacity = capacity
+    self.my_StorageUsed = used
+    self.my_IsPluggedIn = pluggedIn
+
+  def plugIn(self):
+    self.my_IsPluggedIn = True
+
+  def pullOut(self):
+    self.my_IsPluggedIn = False
+
+  def writeData(self, amount):
+    if (self.my_IsPluggedIn):
+      self.my_StorageUsed += amount
+    else:
+      print("Cannot write data")
+
+  def eraseData(self, amount):
+    if (self.my_IsPluggedIn):
+      self.my_StorageUsed -= amount
+    else:
+      print("Cannot erase data")
+
+  def getCapacity(self):
+    return self.my_StorageCapacity
+
+  def getUsed(self):
+    #if the following line of code was used, Python would return None for self.getUsed()
+    #self.my_storageUsed without a return statement
+    #unlike c++ and Java, Python does not veryify return values
+    return self.my_StorageUsed
+
+  #self refers to the left hand side of the expression for operator overloading
+  def __add__(self, two):
+    temp = FlashDrive()
+
+    #get the larger of the two
+    if (self.getCapacity() > two.getCapacity()):
+      temp.my_StorageCapacity = self.getCapacity()
+    else:
+      temp.my_StorageCapacity = two.getCapacity()
+
+    #add both together
+    temp.my_StorageUsed = self.getUsed() + two.getUsed()
+    return temp
+
+  def	__sub__(self, two):
+    temp = FlashDrive()
+
+    if (self.getCapacity() > two.getCapacity()):
+      temp.my_StorageCapacity = self.getCapacity()
+    else:
+      temp.my_StorageCapacity = two.getCapacity()
+
+    if (self.getUsed() > two.getUsed()):
+      temp.my_StorageUsed = self.getUsed() - two.getUsed()
+    else:
+      temp.my_StorageUsed = two.getUsed() - self.getUsed()
+
+    return temp
+
+  def	__gt__(self, two):
+    if (self.getUsed() > two.getUsed()):
+      return True
+    else:
+      return False
+
+  def	__lt__(self, two):
+    if (self.getUsed() < two.getUsed()):
+      return True
+    else:
+      return False
+
+  #operator overloading in Python uses the following keywords
+  """
+  +	__add__(self, other)
+  –	__sub__(self, other)
+  *	__mul__(self, other)
+  /	__truediv__(self, other)
+  //	__floordiv__(self, other)
+  %	__mod__(self, other)
+  **	__pow__(self, other)
+  <	__lt__(self, other)
+  >	__gt__(self, other)
+  <=	__le__(self, other)
+  >=	__ge__(self, other)
+  ==	__eq__(self, other)
+  !=	__ne__(self, other)
+  """
+
+drive1 = FlashDrive( 10, 0, False )
+drive2 = FlashDrive( 20, 0, False )
+        
+drive1.plugIn( )
+drive1.writeData( 5 )
+drive1.pullOut( )
+
+drive2.plugIn( )
+drive2.writeData( 1 )
+drive2.pullOut( )
+
+combined = drive1 + drive2
+print("this drive's filled to ", combined.getUsed() )
+print("this drive's capacity is ", combined.getCapacity() )
+
+other = drive1 - drive2
+print("the other drive's filled to ", other.getUsed( ) )
+print("the other drive's capacity is ", other.getCapacity() )
+
+if (combined > other) :
+    print("looks like combined is bigger..." )
+    
+else :
+    print("looks like other is bigger..." )
+    
+
+if (drive2 > other) :
+    print("looks like drive2 is bigger..." )
+    
+else :
+    print("looks like other is bigger..." )
+    
+
+if (drive2 < drive1) :
+    print("looks like drive2 is smaller..." )
+    
+else :
+    print("looks like drive1 is smaller..." )
