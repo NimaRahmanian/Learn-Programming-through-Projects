@@ -1,0 +1,62 @@
+class Wallet:
+  def Wallet(self):
+    self.dollars = 0
+    self.cents = 0
+  def Wallet(self, dol, cen):
+    self.dollars = dol
+    self.cents = cen
+  def getDollars(self):
+    return self.dollars
+  def getCents(self):
+    return self.cents
+  def canPayFor(self, dollarPurchase, centsPurchase):
+    if (self.dollars >= dollarPurchase):
+      if (self.cents >= centsPurchase) or (self.dollars >= (dollarPurchase+1)):
+        return True
+    return False
+  def payFor(self, dollarPurchase, centsPurchase):
+    if(cents <= centsPurchase):
+      self.dollars -= (dollarPurchase + 1)
+      self.cents -= (centsPurchase-100)
+    else:
+      self.dollars -= dollarPurchase
+      self.cents -= centsPurchase
+  def visitATMForCash(self, dollarAmount):
+    self.dollars += dollarAmount
+
+#de-indent
+#no need to initialize in Python, as seen in previous examples
+
+  #prompt user for values
+  print("Hello, how much money do you have in your wallet?")
+  dol = int(input("Dollars: "))
+  cen = int(input("Cents: "))
+
+  #make w object
+  w = Wallet(dol, cen)
+
+  #visit ATM
+  atm = int(input("How many dollars would you like to withdraw from the ATM? "))
+  w.visitATMForCash(atm)
+
+  #display total money
+  print("Currently you have: ")
+  print("Dollars: ", w.getDollars())
+  print("Cents: ", w.getCents())
+
+  cont = input("Are you spending more money (y/n)? ")
+  while cont == 'y':
+    #indicate price of purchase
+    print("How much are you going to spend?")
+    dolPurch = int(input("Dollars: "))
+    cenPurch = int(input("Cents: "))
+    
+    #authorize the purchase
+    if (w.canPayFor(dolPurch, cenPurch) == true):
+      w.payFor(dolPurch, cenPurch);
+      print("You now have: ")
+      print("Dollars:", w.getDollars())
+      print("Cents:", w.getCents())
+    else:
+      print("\nSorry, you do not have enough money to spend.")
+      print("Please spend less.")
