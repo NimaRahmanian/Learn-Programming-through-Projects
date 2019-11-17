@@ -1,1 +1,35 @@
+import java.util.*;
+public class Main{
+	public static void main(String[] args){
 
+	int beep = 0, spin = 0;
+	Scanner sc = new Scanner(System.in);
+	
+	System.out.println("If computer does beep, input 1. If computer does not beep, input 0.");
+	System.out.print("Input: ");
+	beep = sc.nextInt();
+
+	System.out.println("If hard drive does spin, input 1. If hard drive does not spin, input 0.");
+	System.out.print("Input: ");
+	spin = sc.nextInt();
+
+
+  if ( !(beep == 1 || beep == 0) || !(spin == 1 || spin == 0) ){
+    System.out.println("Bad input!");
+  }else{
+    if (beep == 1){
+      if (spin == 1){
+        System.out.println("Contact Tech. Support");
+      }else{
+        System.out.println("Check Drive Contacts");
+      }	
+    }else{
+      if (spin == 1){
+        System.out.println("Check Speaker Contacts");
+      }else{
+        System.out.println("Bring Computer to Repair Center");
+      }
+    }
+  }
+	}
+}
