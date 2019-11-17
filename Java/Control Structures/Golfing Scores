@@ -1,1 +1,40 @@
+import java.util.*;
+public class Main{
+	public static void main(String[] args){
 
+	int str = 0;
+	Scanner sc = new Scanner(System.in);
+	
+	System.out.print("Number of strokes: ");
+	str = sc.nextInt();
+  
+  //nested if--else if--else conditions
+  //general format
+  //if(condition){}
+  //else if (condition){}
+  //else{}
+	if (str > 0){
+		if (str == 1){ 
+			System.out.println("hole in one"); 
+		}else if (str == 2){ 
+			System.out.println("double eagle"); 
+		}else if (str == 3){ 
+			System.out.println("eagle"); 
+		}else if (str == 4){ 
+			System.out.println("birdie"); 
+		}else if (str == 5){ 
+		  System.out.println("par"); 
+		}else if (str == 6){ 
+		  System.out.println("bogey"); 
+		}else if (str == 7){ 
+		  System.out.println("double bogey"); 
+		}else if (str == 8){ 
+		  System.out.println("triple bogey"); 
+		}else { 
+		  System.out.println("disaster"); 
+		}
+	}else{
+		System.out.println("Invalid input");
+	}
+	}
+}
