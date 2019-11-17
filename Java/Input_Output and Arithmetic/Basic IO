@@ -1,1 +1,13 @@
-
+import java.util.*;
+public class Main{
+  public static void main(String[] args){
+    Scanner sc = new Scanner (System.in); //create scanner object
+    System.out.println("Hello, enter your name");
+    String name = sc.nextLine(); //receive input for name string
+    System.out.println("Your name is " + name); //print name
+    System.out.println("And your age please: ");
+    int age;
+    age = sc.nextInt(); //receive input for age value
+    System.out.println("Your age is " + age); //print age
+  }
+}
