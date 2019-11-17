@@ -1,1 +1,30 @@
+import java.util.*;
+class Main {
+  public static void main(String[] args) {
+    double length, width, height, volume;
+    Scanner sc = new Scanner(System.in);
+    
+    System.out.print("What is the length of the package: ");
+    length = sc.nextDouble();
+    
+    System.out.print("What is the width of the package: ");
+    width = sc.nextDouble();
+    
+    System.out.print("What is the height of the package: ");
+    height = sc.nextDouble();
+    
+    if ( (length > 10) || (width > 10) || (height > 10) ){
+      System.out.println("Reject");
+    }else{
+      System.out.println("Accept");
+      volume = length * height * width;
+      System.out.print("The package dimensions: ");
+      System.out.println(length + " x " + width + " x " + height + " inches");
+      System.out.println("The package volume: " + volume);
+      double price = 0.5, cost;
+      cost = price * volume;
+      System.out.println("The price of the package is : " + cost);
 
+    }
+  }
+}
