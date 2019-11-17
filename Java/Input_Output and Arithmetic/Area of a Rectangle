@@ -1,1 +1,16 @@
-
+import java.util.*;
+class Main {
+  public static void main(String[] args) {
+    double base, height, area;
+    Scanner sc = new Scanner(System.in);
+    
+    System.out.println("What is the base: ");
+    base = sc.nextDouble();
+    System.out.println("What is the height: ");
+    height = sc.nextDouble();
+    
+    area = base * height;
+    
+    System.out.println("The area is: " + area);
+  }
+}
