@@ -1,0 +1,125 @@
+public class Student{
+  //global variables have the static keyword, just like class methods have the static keyword
+  static int numStudents = 0;
+  //instance variables
+  private String name;
+  private int test1;
+  private int test2;
+  private int test3;
+
+  //default constructor
+  public Student(){
+    name = "";
+    test1 = 0;
+    test2 = 0;
+    test3 = 0;
+    Student.incNumStudents();
+  }
+  //constructor with parameters
+  public Student(String num, int t1, int t2, int t3){
+    name = "";
+    test1 = t1;
+    test2 = t2;
+    test3 = t3;
+    Student.incNumStudents();
+  }
+  //copy constructor -- argument is an instance of a class, you copy what ever attributes you wish
+  public Student(Student s){
+    name = s.name;
+    test1 = s.test1;
+    test2 = s.test2;
+    test3 = s.test3;
+    Student.incNumStudents();
+  }
+
+  public static void incNumStudents(){
+    numStudents++;
+  }
+
+  //modifier methods
+  public void setName(String nm){
+    name = nm;
+  }
+  public void setScore(int i, int score){
+    if (i == 1){
+      test1 = score;
+    }
+  }
+  //accessor methods
+  public String getName(){
+    return name;
+  }
+  public int getScore (int i){
+    if (i==1) 
+      return test1;
+    else if (i==2) 
+      return test2;
+    else 
+      return test3; 
+  }
+  public int getAverage(){
+    int average;
+    average = (int)(Math.round((test1+test2+test3)/3.0));
+    return average; 
+  }
+
+  public int getHighScore(){
+    int highScore;
+    highScore = test1;
+    if (test2 > highScore) 
+      highScore = test2;
+    if (test3 > highScore) 
+      highScore = test3;
+    return highScore; 
+  }
+  public boolean equals(Student s){
+    //the use of this is optional
+    //it makes it more readible for which object we are refering to
+    if (s.test1 == this.test1){
+      return true;
+    }
+    return false;
+  }
+  //whenever an instance of the class is printed, this is method (overridden) will be called
+  public String toString(){
+    //Construct and return a string representation of the student
+    String str;
+    str = "Name: "+name+"\nTest 1: "+test1+"\nTest 2: "+test2+"\nTest3: "+test3+"\nAverage: "+getAverage();
+    return str;
+  }
+}
+
+import java.util.*;
+  public class Main{
+    public static void main (String [] args) {
+    //default constructor
+    Student s1 = new Student();
+    //constructor with parameters
+    Student s2 = new Student("Bill",84,86, 88);
+    //copy constructor -- argument is an instance of a class, you copy what ever attributes you wish
+    Student s3 = new Student(s2);
+    //declare an object -- Java has a default constructor
+    Student s4;
+    System.out.println("\nHere is student s1\n" + s1);
+    System.out.println("\nHere is student s2\n" + s2);
+    System.out.println("\nHere is student s3\n" + s3);
+    
+    s3.setName ("Jill");
+    s3.setScore (1,84);
+    s3.setScore (2,86);
+    s3.setScore (3,86);
+    System.out.println ("\nHere is student s3\n" + s3);
+    
+    //s4 points to the same object as s3 -- aliasing
+    s4 = s3;
+    System.out.println ("\nHere is student s4\n" + s4);
+    
+    boolean same = s2.equals(s3);
+    System.out.println (same);
+    
+    s1.setName("sam");
+    System.out.println("\nName of sl is now: "+ s1.getName());
+    System.out.println(Student.numStudents);
+  }
+
+}
