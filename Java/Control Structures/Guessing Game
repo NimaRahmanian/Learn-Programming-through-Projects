@@ -1,1 +1,31 @@
-
+import java.util.*;
+class Main {
+  public static void main(String[] args) {
+    int counter, randNum, guess;
+    boolean guessed_correct = false;
+    
+    randNum = (int)(10 * Math.random()) + 1;
+    Scanner sc = new Scanner(System.in);
+    for (counter = 1; counter < 6; counter++){
+      System.out.print("Guess a number from one to ten: ");
+      guess = sc.nextInt();
+      if (randNum > guess){
+        System.out.println("You guessed too low");
+      }
+      else if (randNum < guess){
+        System.out.println("You guessed too high");
+      }
+      else{
+        guessed_correct = true;
+        break;
+      }
+      }
+    if (guessed_correct){
+      System.out.println("Nice job, it only took you " + counter + " guesses");
+    }
+    else{
+      System.out.println("No luck. The number was " + randNum);
+    }
+    
+  }
+}
