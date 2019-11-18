@@ -1,1 +1,25 @@
 
+import java.util.*;
+class Main {
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int number = 0, limit = 0, d = 0;
+    System.out.print("Enter an integer greater than 2: ");
+    number = sc.nextInt();
+    
+    limit = (int)Math.sqrt(number);
+    
+    for (d = 2; d <= limit; d++){
+      if (number % d == 0){
+        break;
+      }
+    }
+    if (d <= limit){
+      System.out.println("Not prime.");
+    }
+    else{
+      System.out.println("Prime.");
+    }
+    
+  }
+}
