@@ -1,0 +1,174 @@
+public class FlashDrive{
+  private int my_StorageCapacity, my_StorageUsed;
+  private boolean my_IsPluggedIn;
+
+  //either way is acceptable for initializing instance variables
+  //the use of this keyword is mandatory if it conflicts with static, or class variables
+  public FlashDrive(){
+    this.my_StorageCapacity = 0;
+    this.my_StorageUsed = 0;
+    this.my_IsPluggedIn = false;
+  }
+  public FlashDrive( int capacity, int used, boolean pluggedIn ){
+    this.my_StorageCapacity = capacity;
+    this.my_StorageUsed = used;
+    this.my_IsPluggedIn = pluggedIn;
+  }
+
+  public void plugIn(){
+    this.my_IsPluggedIn = true;
+  }
+  public void pullOut(){
+    my_IsPluggedIn = false;
+  }
+  public void writeData(int amount){
+    if (this.my_IsPluggedIn){
+      this.my_StorageUsed += amount;
+    }
+    else{
+      System.out.println("Cannot write data");
+    }
+  }
+  public void eraseData(int amount){
+    if (my_IsPluggedIn){
+      my_StorageUsed -= amount;
+    }
+    else{
+      System.out.println("Cannot erase data");
+    }
+  }
+
+  public int getCapacity( ){
+    return my_StorageCapacity;
+  }
+  public int getUsed( ){
+    return my_StorageUsed;
+  }
+
+  //int getUsed( ) const;
+  //how to apply this const to java?
+
+
+  //const is final in Java
+  //there is no address of in Java, the identifier is a reference to the object
+  public static FlashDrive plus(final FlashDrive one, final FlashDrive two){
+    FlashDrive temp = new FlashDrive();
+
+    //get the larger of the two
+    if (one.getCapacity() > two.getCapacity()){
+      temp.my_StorageCapacity = one.getCapacity();
+    }
+    else{
+      temp.my_StorageCapacity = two.getCapacity();
+    }
+
+    //add both together
+    temp.my_StorageUsed = one.getUsed() + two.getUsed();
+    return temp;
+  }
+  public static FlashDrive minus(final FlashDrive one, final FlashDrive two){
+    FlashDrive temp = new FlashDrive();
+    if (one.getCapacity() > two.getCapacity()){
+      temp.my_StorageCapacity = one.getCapacity();
+    }
+    else{
+      temp.my_StorageCapacity = two.getCapacity();
+    }
+    if (one.getUsed() > two.getUsed()){
+      temp.my_StorageUsed = one.getUsed() - two.getUsed();
+    }
+    else{
+      temp.my_StorageUsed = two.getUsed() - one.getUsed();
+    }
+    return temp;
+  }
+
+  public static boolean greaterThan(final FlashDrive one, final FlashDrive two){
+    if (one.getUsed() > two.getUsed()){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
+
+  public static boolean lessThan(final FlashDrive one, final FlashDrive two){
+    if (two.getUsed() < one.getUsed()){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
+}
+
+/*
+
+    public:
+
+      FlashDrive( );
+      FlashDrive( int capacity, int used, bool pluggedIn );
+
+      void plugIn( );
+      void pullOut( );
+      void writeData( int amount );
+      void eraseData( int amount );
+      void formatDrive( );
+
+      int getCapacity( ) const;
+      void setCapacity( int amount );
+
+      int getUsed( ) const;
+      void setUsed( int amount );
+
+    private:
+      int my_StorageCapacity;
+      int my_StorageUsed;
+      bool my_IsPluggedIn;
+
+*/
+import java.util.*;
+class Main {
+  public static void main(String[] args) {
+    FlashDrive drive1 = new FlashDrive( 10, 0, false );
+    FlashDrive drive2 = new FlashDrive( 20, 0, false );
+        
+    drive1.plugIn( );
+    drive1.writeData( 5 );
+    drive1.pullOut( );
+
+    drive2.plugIn( );
+    drive2.writeData( 1 );
+    drive2.pullOut( );
+
+    FlashDrive combined = FlashDrive.plus(drive1, drive2);
+    System.out.println("this drive's filled to " + combined.getUsed() );
+    System.out.println("this drive's capacity is " + combined.getCapacity() );
+
+    FlashDrive other = FlashDrive.minus(drive1, drive2);
+    System.out.println("the other drive's filled to " + other.getUsed( ) );
+    System.out.println("the other drive's capacity is "  + other.getCapacity() );
+
+    //class methods (as indicated with the static keyword) must be called with the class name
+    if (FlashDrive.greaterThan(combined, other)) {
+        System.out.println("looks like combined is bigger..." );
+    }
+    else {
+        System.out.println("looks like other is bigger..." );
+    }
+
+    if (FlashDrive.greaterThan(drive2, other)) {
+        System.out.println("looks like drive2 is bigger..." );
+    }
+    else {
+        System.out.println("looks like other is bigger..." );
+    }
+
+    if (FlashDrive.lessThan(drive2, drive1)) {
+        System.out.println("looks like drive2 is smaller..." );
+    }
+    else {
+        System.out.println("looks like drive1 is smaller..." );
+    }
+  }
+}
