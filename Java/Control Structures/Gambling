@@ -1,1 +1,34 @@
-
+import java.util.*;
+class Main {
+  public static void main(String[] args) {
+    Scanner reader = new Scanner(System.in);
+    
+    int die1, die2, dollars, count, maxDollars, countAtMax;
+    
+    System.out.print("How many dollars do you have? ");
+    dollars = reader.nextInt();
+    
+    maxDollars = dollars;
+    countAtMax = 0;
+    count = 0;
+    
+    while (dollars > 0){
+      count++;
+      
+      die1 = (int)(6 * Math.random()) + 1;
+      die2 = (int)(6 * Math.random()) + 1;
+      
+      if (die1 + die2 == 7)
+        dollars += 4;
+      else
+        dollars--;
+      
+      if (dollars > maxDollars){
+        maxDollars = dollars;
+        countAtMax = count;
+      }
+    }
+  
+    System.out.print("You are broke after " + count + " rolls.\n" + "You should have quit after " + countAtMax + " rolls when you had $" + maxDollars + ".");
+  }
+}
