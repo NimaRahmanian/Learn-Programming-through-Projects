@@ -1,1 +1,99 @@
+public class Wallet {
+    private int dollars, cents;
+    
+    public Wallet(int dol, int cen){
+      this.dollars = dol;
+      this.cents = cen;
+    }
+    public Wallet(){
+      this.dollars = 0;
+      this.cents = 0;
+    }
 
+    public int getDollars(){
+      return this.dollars;
+    }
+
+    public int getCents(){
+      return this.cents;
+    }
+
+    public boolean canPayFor( int dollarPurchase, int centsPurchase ){
+      if (dollars >= dollarPurchase){
+        if ((cents >= centsPurchase) || (dollars >= (dollarPurchase+1))){
+              return true;
+        }
+      } 
+        return false;
+    }
+
+    public void payFor( int dollarPurchase, int centsPurchase ){
+      if (cents <= centsPurchase){
+        dollars -= (dollarPurchase + 1);
+        cents -= (centsPurchase-100);
+      } else{
+        dollars -= dollarPurchase;
+        cents -= centsPurchase;
+      }
+    }
+
+    public void visitATMForCash( int dollarAmount ){
+      this.dollars += dollarAmount;
+    }
+};
+
+
+import java.util.*;
+class Main{
+  public static void main(String args[]){
+    //initialize variables
+    Scanner sc = new Scanner(System.in);
+    int atm = 0, dol = 0, cen = 0, dolPurch = 0, cenPurch = 0;
+    char cont = 'y';
+
+    //prompt user for values
+    System.out.println("Hello, how much money do you have in your wallet?");
+    System.out.print("Dollars: ");
+    dol = sc.nextInt();
+    System.out.print("Cents: ");
+    cen = sc.nextInt();
+
+    //make w object
+    Wallet w = new Wallet(dol, cen);
+
+    //visit ATM
+    System.out.print("How many dollars would you like to withdraw from the ATM? ");
+    atm = sc.nextInt();
+    w.visitATMForCash(atm);
+
+    //display total money
+    System.out.println("Currently you have: ");
+    System.out.println("Dollars: " + w.getDollars());
+    System.out.println("Cents: " + w.getCents());
+  
+
+  do {
+    //indicate price of purchase
+    System.out.println("How much are you going to spend?");
+    System.out.print("Dollars: ");
+    dolPurch = sc.nextInt();
+    System.out.print("Cents: ");
+    cenPurch = sc.nextInt();
+
+    //authorize the purchase
+    if (w.canPayFor(dolPurch, cenPurch) == true) {
+      w.payFor(dolPurch, cenPurch);
+      System.out.println("You now have: ");
+      System.out.println("Dollars:" + w.getDollars());
+      System.out.println("Cents:" + w.getCents());
+    }
+    else {
+      System.out.println("\nSorry, you do not have enough money to spend.");
+      System.out.println("Please spend less.");
+    }
+
+    System.out.println("Are you spending more money (y/n)? ");
+    cont = sc.next().charAt(0);
+  } while (cont == 'y');
+  }
+}
