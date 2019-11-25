@@ -1,1 +1,26 @@
+#include <iostream>
+using namespace std;
 
+//determineClassic must be first because calcClassic uses it
+void determineClassic(int yrs){
+    if (yrs > 20){
+      cout << "Congratulations, your car is classic";
+    } else{
+      cout << "Your car is not a classic yet";
+    }
+  }
+
+void calcClassic(int carDate, int classicYear){
+    int yrs;
+    yrs = classicYear - carDate;
+    determineClassic(yrs);
+  }
+
+int main() {   
+    int carYear, classic; 
+    cout << "Enter the year your car was built in: ";
+    cin >> carYear ;
+    cout << "What is the classic year: ";
+    cin >> classic ;
+    calcClassic(carYear, classic);
+}
