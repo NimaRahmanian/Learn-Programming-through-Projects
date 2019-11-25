@@ -1,1 +1,24 @@
+#include <iostream>
+#include <math.h>
 
+using namespace std;
+
+int main() {
+  double radius = 0, diameter = 0, circumference = 0, surface_area = 0, volume = 0;
+    
+  cout << "What is the radius: ";
+  cin >> radius;
+
+  //many math operations exist in the math.h file
+  diameter = radius * 2;
+  circumference = 2 * 3.14 * radius;
+  surface_area = 4.0 * pow(radius, 2) * 3.14;
+  volume = (4.0/3.0) * pow(radius, 3) * 3.14;
+
+  cout << "The diameter is " << diameter << "\n";
+  cout << "The circumference is " << circumference << "\n";
+  cout << "The surface_area is " << surface_area << "\n";
+  cout << "The volume is " << volume << "\n";
+  
+
+}
