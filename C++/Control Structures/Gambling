@@ -1,1 +1,33 @@
+#include <iostream>
+using namespace std;
 
+int main() {
+    int die1, die2, dollars, count, maxDollars, countAtMax;
+    
+    cout << "How many dollars do you have? ";
+    cin >> dollars;
+    
+    maxDollars = dollars;
+    countAtMax = 0;
+    count = 0;
+    
+    while (dollars > 0){
+      count++;
+      
+      die1 = (rand() % 7) + 1;
+      die2 = (rand() % 7) + 1;
+      
+      if (die1 + die2 == 7)
+        dollars += 4;
+      else
+        dollars--;
+      
+      if (dollars > maxDollars){
+        maxDollars = dollars;
+        countAtMax = count;
+      }
+    }
+  
+    cout << "You are broke after " << count << " rolls." << "You should have quit after " << countAtMax << " rolls when you had $" << maxDollars << ".";
+  
+}
