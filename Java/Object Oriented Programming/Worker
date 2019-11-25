@@ -1,0 +1,68 @@
+import java.util.*;
+public class Worker{
+  private String myName;
+  private double myHourlyWage;
+  private boolean isUnionMember;
+
+  public Worker(){
+    myName = "";
+    myHourlyWage = 0;
+    isUnionMember = false;
+  }
+  public Worker(String name, double hourlyWage, boolean union){
+    myName = name;
+    myHourlyWage = hourlyWage;
+    isUnionMember = union;
+  }
+
+  public String getName(){
+    return myName;
+  }
+  public double getHourlyWage(){
+    return myHourlyWage;
+  }
+  public boolean getUnionStatus(){
+    return isUnionMember;
+  }
+
+  public double computerMedDed(int dependents){
+    if (myHourlyWage > 20){
+      return dependents*10;
+    }
+    else{
+      return 0;
+    }
+  }
+
+  public void incrementWage(double amt){
+    myHourlyWage += amt;
+  }
+  public void changeUnionStatus(){
+    if (isUnionMember){
+      isUnionMember = false;
+    }
+    else{
+      isUnionMember = true;
+    }
+  }
+
+  public String toString(){
+    return "Name: " + myName + " Wage: " + myHourlyWage + " Union: " + isUnionMember;
+  }
+}
+class Main {
+  public static void main(String[] args) {
+    Worker w1 = new Worker();
+    Worker w2 = new Worker("Shira", 24.5, true);
+
+    System.out.println(w2.computerMedDed(5));
+
+    w1.changeUnionStatus();
+    w2.incrementWage(1.25);
+    w2.changeUnionStatus();
+
+    System.out.println(w1);
+    System.out.println(w2);
+
+  }
+}
