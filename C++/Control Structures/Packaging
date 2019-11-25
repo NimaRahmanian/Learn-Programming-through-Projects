@@ -1,1 +1,30 @@
+#include <iostream>
+using namespace std;
 
+int main() {
+
+  double length = 0, width = 0, height = 0, volume = 0;
+  
+  cout << "What is the length of the package: ";
+  cin >> length;
+    
+  cout << "What is the width of the package: ";
+  cin >> width;
+    
+  cout << "What is the height of the package: ";
+  cin >> height;
+  //boolean operators are as follows:
+  //&& and, || or, ! not, and many more which are not frequently used
+  if ( (length > 10) || (width > 10) || (height > 10) ){
+    cout << "Reject" << "\n";
+  }else{
+    cout << "Accept" << "\n";
+    volume = length * height * width;
+    cout << "The package dimensions: " << "\n";
+    cout << length << " x " << width << " x " << height << " inches" << "\n";
+    cout << "The package volume: " << volume << "\n";
+    double price = 0.5, cost;
+    cost = price * volume;
+    cout << "The price of the package is : " << cost << "\n";
+  }
+}
