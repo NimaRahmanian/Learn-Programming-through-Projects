@@ -1,1 +1,19 @@
+#include<stdio.h>
+#include <math.h>
+int main() {
+  double radius = 0, diameter = 0, circumference = 0, surface_area = 0, volume = 0;
+    
+  printf("What is the radius: ");
+  scanf("%lf", &radius);
 
+  //many math operations exist in the math.h file
+  diameter = radius * 2;
+  circumference = 2 * 3.14 * radius;
+  surface_area = 4.0 * pow(radius, 2) * 3.14;
+  volume = (4.0/3.0) * pow(radius, 3) * 3.14;
+
+  printf("The diameter is %lf\n" , diameter);
+  printf("The circumference is %lf\n" , circumference);
+  printf("The surface_area is %lf\n" , surface_area);
+  printf("The volume is %lf\n" , volume);
+}
