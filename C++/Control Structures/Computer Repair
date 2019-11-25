@@ -1,1 +1,31 @@
+#include <iostream>
+using namespace std;
 
+int main() {
+	int beep, spin;
+	
+	cout << "If computer does beep, input 1. If computer does not beep, input 0." << "\n" << "Input: ";
+	cin >> beep;
+
+	cout << "If hard drive does spin, input 1. If hard drive does not spin, input 0." << "\n" << "Input: ";
+	cin >> spin;
+
+  if ( !(beep == 1 || beep == 0) || !(spin == 1 || spin == 0) ){
+    cout << "Bad input!";
+  }else{
+    if (beep == 1){
+      if (spin == 1){
+        cout << "Contact Tech. Support";
+      }else{
+        cout << "Check Drive Contacts";
+      }	
+    }else{
+      if (spin == 1){
+        cout << "Check Speaker Contacts";
+      }else{
+        cout << "Bring Computer to Repair Center";
+      }
+    }
+  }
+  
+}
