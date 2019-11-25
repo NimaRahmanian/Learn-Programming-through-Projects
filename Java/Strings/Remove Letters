@@ -1,1 +1,20 @@
+import java.util.*;
+class Main {
+  public static void main(String[] args) {
+    String removed = new String("The raIn in SpaiN stays mainly on the plAin.");
 
+    //remove all instances of 't'
+    int index = removed.toLowerCase().indexOf("t");
+    while (index != -1){
+      removed = removed.substring(0, index) + removed.substring(index+1);
+      index = removed.toLowerCase().indexOf("t");
+    }
+    //remove all instances of 's'
+    index = removed.toLowerCase().indexOf("s");
+    while (index != -1){
+      removed = removed.substring(0, index) + removed.substring(index+1);
+      index = removed.toLowerCase().indexOf("s");
+    }
+    System.out.println(removed);
+  }
+}
