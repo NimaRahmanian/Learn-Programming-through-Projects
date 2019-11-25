@@ -1,1 +1,21 @@
+#include <iostream>
+#include <algorithm>
+#include <string>
+using namespace std;
 
+int main() {
+  string name = "";
+  int count = 0;
+  cout << "Enter name or \"XXX uppercase\" to quit: ";
+  cin >> name ;
+  transform(name.begin(), name.end(), name.begin(), ::toupper);
+  while (name.compare("XXX") != 0){ //if they equal 0, they are identical
+    if (name.length() <= 5){
+      count++;
+    }
+    cout << "Enter name or \"XXX uppercase\" to quit: ";
+    cin >> name ;
+    transform(name.begin(), name.end(), name.begin(), ::toupper);
+  }
+  cout << "The number of names less than or equal to 5 letters is " << count;
+}
