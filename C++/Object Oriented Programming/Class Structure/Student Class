@@ -1,1 +1,161 @@
+#include <iostream>
+#include <string>
+using namespace std;
 
+class Student{
+  //instance variables
+  private:
+    string name;
+    int test1;
+    int test2;
+    int test3;
+  public:
+    //global variables have the static keyword, just like class methods have the static keyword
+    static int numStudents;
+
+    //default constructor
+    Student();
+    //constructor with parameters
+    Student(string num, int t1, int t2, int t3);
+    //copy constructor -- argument is an instance of a class, you copy what ever attributes you wish
+    Student(Student &s);
+
+    //class method, cannot be accessed by class instances?
+    static void incNumStudents();
+
+    //modifier methods
+    void setName(string nm);
+    void setScore(int i, int score);
+
+    //accessor methods
+    string getName();
+    int getScore(int i);
+    int getAverage();
+    int getHighScore();
+
+    //whenever an instance of the class is printed, this is method (overridden) will be called
+    friend bool operator== (const Student& one, const Student& two);
+    friend ostream &operator<< (ostream &output, Student &stu );
+};
+//beware of this semi-colon
+
+int main() {
+    cout << "hello world";
+    //instanciate objects
+    //object has dynamic storage duration (usually is on the heap)
+    //must use delete statement if s1 is no longer needed
+    Student *s1 = new Student();
+    //object has automatic storage duration (usually is on the stack)
+    Student s2("Bill",84,86, 88);
+    Student s3(s2);
+    //default constructor
+    Student s4;
+    //declare an object -- Java has a default constructor
+    cout << "Here is student s1" << s1 << "\n";
+    cout << "Here is student s2" << s2 << "\n";
+    cout << "Here is student s3" << s3 << "\n";
+    
+    s3.setName ("Jill");
+    s3.setScore (1,84);
+    s3.setScore (2,86);
+    s3.setScore (3,86);
+    cout << "Here is student s3" << s3 << "\n";
+    
+    //s5 points to the same object as s3 -- aliasing
+    s4 = s3;
+    cout << "Here is student s4" << s4 << "\n";
+    
+    bool same = (s2 == s3);
+    cout << same;
+    
+    //when constructing object with new, it is effectively a pointer
+    //must use the arrow -> operator
+    s1->setName("sam");
+    cout << "Name of sl is now: " << s1->getName() << "\n";
+    cout << Student().numStudents << "\n";
+}
+
+
+int Student::numStudents = 0;
+
+Student::Student(){
+  name = "";
+  test1 = 0;
+  test2 = 0;
+  test3 = 0;
+  Student().incNumStudents();
+}
+
+Student::Student(string num, int t1, int t2, int t3){
+  name = "";
+  test1 = t1;
+  test2 = t2;
+  test3 = t3;
+  Student().incNumStudents();
+}
+
+Student::Student(Student &s){
+  name = s.name;
+  test1 = s.test1;
+  test2 = s.test2;
+  test3 = s.test3;
+  Student().incNumStudents();
+}
+
+//do not include static keyword
+void Student::incNumStudents(){
+  numStudents++;
+}
+//modifier methods
+void Student::setName(string nm){
+  name = nm;
+}
+void Student::setScore(int i, int score){
+  if (i == 1){
+    test1 = score;
+  }
+}
+//accessor methods
+string Student::getName(){
+  return name;
+}
+int Student::getScore(int i){
+  if (i==1) 
+    return test1;
+  else if (i==2) 
+    return test2;
+  else 
+    return test3; 
+}
+int Student::getAverage(){
+  int average;
+  average = (int)((test1+test2+test3)/3.0);
+  return average; 
+}
+int Student::getHighScore(){
+  int highScore;
+  highScore = test1;
+  if (test2 > highScore) 
+    highScore = test2;
+  if (test3 > highScore) 
+    highScore = test3;
+  return highScore; 
+}
+
+bool operator== (const Student& one, const Student& two){
+    //the use of this is optional
+    //it makes it more readible for which object we are refering to
+    if (one.test1 == two.test1){
+      return true;
+    }
+    return false;
+}
+
+ostream& operator << (ostream &output, Student &stu) {
+    output << "Name: " << stu.name << endl;
+    output << "Test 1:" << stu.test1 << endl;
+    output << "Test 2:" << stu.test2 << endl;
+    output << "Test 3:" << stu.test3 << endl;
+    output << "Average: " << stu.getAverage();
+    return output;
+}
