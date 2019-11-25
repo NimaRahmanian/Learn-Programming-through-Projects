@@ -1,1 +1,24 @@
+#include <iostream>
+using namespace std;
 
+int calcArea(int len, int width){
+    int quad_area = 0;
+    quad_area = len*width;
+    return quad_area;
+  }
+int calcPer(int len, int width){
+    int per = 0;
+    per = 2*len + 2*width;
+    return per;
+  }
+int main() {
+    int length = 0, width = 0, area = 0, per = 0;
+    cout << "Enter length of quad: ";
+    cin >> length ;
+    cout << "Enter width of quad: ";
+    cin >> width ;
+    area = calcArea(length, width);
+    cout << "Area of quad with length " << length << " and width " << width << " is " << area << endl;
+    per = calcPer(length, width);
+    cout << "Perimeter: " << per;
+}
