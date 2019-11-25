@@ -1,0 +1,133 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Time{
+  private:
+    int myHrs;
+    int myMins;
+    int mySecs;
+
+  public:
+    Time(){
+      myHrs = 0;
+      myMins = 0;
+      mySecs = 0;
+    }
+    Time(int h, int m, int s){
+      myHrs = h;
+      myMins = m;
+      mySecs = s;
+    }
+    
+    void resetTime(int h, int m, int s){
+      myHrs = h;
+      myMins = m;
+      mySecs = s;
+    }
+    void increment(){
+      if(mySecs == 59 && myMins == 59){
+        myHrs++;
+        mySecs = 0;
+        myMins = 0;
+      }
+      else if (mySecs == 59){
+        myMins++;
+        mySecs = 0;
+      }
+      else{
+        mySecs++;
+      }
+    }
+
+    bool operator== (const Time &t){
+      if (mySecs == t.mySecs && myMins == t.myMins && myHrs == t.myHrs)
+        return true;
+      else
+        return false;
+    }
+    bool operator < (const Time &t){
+      if (myHrs < t.myHrs)
+        return true;
+      else if (myHrs > t.myHrs)
+        return false;
+      if (myMins < t.myMins)
+        return true;
+      else if (myMins > t.myMins)
+        return false;
+      if (mySecs < t.mySecs)
+        return true;
+      return false;
+    }
+    
+    friend ostream &operator <<(ostream &output, const Time &t){
+      output << "Time in hours: " << t.myHrs << " min: " << t.myMins << " sec: " << t.mySecs << endl;
+      return output;
+    }
+
+    void takeFromHrs(){
+      myHrs -= 1;
+      myMins += 60;
+    }
+    void takeFromMins(){
+      myMins -= 1;
+      mySecs += 60;
+    }
+
+    Time difference(Time &t){
+      //the value of this is the reference address of the current object, it is a pointer
+      //the asterick operator dereferences the pointer
+      if (*this < t){
+        return t.subTimes(*this);
+      }
+      else{
+        return subTimes(t);
+      }
+    }
+
+    Time subTimes(Time &t){
+      if (mySecs < t.mySecs){
+        if (myMins == 0){
+          takeFromHrs();
+        takeFromMins();
+        }
+      }
+      int newSecs = mySecs - t.mySecs;
+
+      if (myMins < t.myMins){
+        takeFromHrs();
+      }
+      int newMins = myMins - t.myMins;
+      int newHrs = myHrs - t.myHrs;
+
+      Time timeDifference(newHrs, newMins, newSecs);
+      return timeDifference;
+    }
+};
+
+int main() {
+    cout << "Hello world!" << endl;
+    Time t1;
+    //Time t1(); is the incorrect way of using the default constructor.
+    Time t2(4, 20, 57);
+
+    cout << t1 << endl;
+    cout << t2 << endl;
+
+    t1.resetTime(4, 19, 57);
+    t1.increment();
+
+    bool truth = (t1 < t2);
+    cout << "Is t1 less than t2: " << truth << endl;
+
+    truth = (t1 == t2);
+    cout << "Is t1 less than t2: " << truth << endl;
+
+    Time t3(5, 0, 1);
+    Time t4(1, 0, 1);
+
+    cout << t3 << endl;
+    cout << t4 << endl;
+
+    cout << "The difference between time3 and time4 is \n" << t3.difference(t4) << endl;
+}
