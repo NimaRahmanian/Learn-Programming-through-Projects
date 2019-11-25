@@ -1,1 +1,30 @@
+#include <iostream>
+#include <string>
+#include<algorithm>
+using namespace std;
 
+//self made function to resembly that of Java's toLowerCase
+string toLowerCase(string letters){
+  transform(letters.begin(), letters.end(), letters.begin(), ::tolower); 
+  return letters;
+}
+
+int main() {
+    string template_string = "The raIn in SpaiN stays mainly on the plAin.";
+    string removed(template_string); //copy constructor
+
+    //remove all instances of 't'
+    //substring is exclusive of the second argument
+    int index = toLowerCase(removed).find("t");
+    while (index != -1){
+      removed = removed.substr(0, index) + removed.substr(index+1, removed.length());
+      index = toLowerCase(removed).find("t");
+    }
+
+    index = toLowerCase(removed).find("s");
+    while (index != -1){
+      removed = removed.substr(0, index) + removed.substr(index+1, removed.length());
+      index = toLowerCase(removed).find("s");
+    }
+    cout << removed;
+}
