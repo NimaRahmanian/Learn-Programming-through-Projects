@@ -1,1 +1,29 @@
-
+#include <iostream>
+using namespace std;
+int main() {
+    int counter, randNum, guess;
+    bool guessed_correct = false;
+    
+    randNum = (rand() % 11) + 1;
+    
+    for (counter = 1; counter < 6; counter++){
+      cout << "Guess a number from one to ten: ";
+      cin >> guess ;
+      if (randNum > guess){
+        cout << "You guessed too low" << endl;
+      }
+      else if (randNum < guess){
+        cout << "You guessed too high" << endl;
+      }
+      else{
+        guessed_correct = true;
+        break;
+      }
+      }
+    if (guessed_correct){
+      cout << "Nice job, it only took you " << counter << " guesses";
+    }
+    else{
+      cout << "No luck. The number was " << randNum;
+    }
+}
