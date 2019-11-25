@@ -1,1 +1,39 @@
+#include <iostream>
+using namespace std;
 
+int main() {
+  //str is stroke
+	int str;
+
+	cout << "Number of strokes: ";
+	cin >> str;
+
+  //nested if--else if--else conditions
+  //general format
+  //if(condition){}
+  //else if (condition){}
+  //else{}
+	if (str > 0){
+		if (str == 1){ 
+			cout << "hole in one"; 
+		} else if (str == 2){ 
+			cout << "double eagle"; 
+		} else if (str == 3){ 
+			cout << "eagle"; 
+		} else if (str == 4){ 
+			cout << "birdie"; 
+		} else if (str == 5){ 
+		  cout << "par"; 
+		} else if (str == 6){ 
+		  cout << "bogey"; 
+		} else if (str == 7){ 
+		  cout << "double bogey"; 
+		} else if (str == 8){ 
+		  cout << "triple bogey"; 
+		} else { 
+		  cout << "disaster"; 
+		}
+	} else{
+		cout << "Invalid input";
+	}
+}
