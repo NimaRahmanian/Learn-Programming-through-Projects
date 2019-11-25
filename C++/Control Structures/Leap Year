@@ -1,1 +1,30 @@
+#include <iostream>
+using namespace std;
 
+int main() {
+    int year;
+    cout << "What is the year in question: ";
+    cin >> year;
+
+    if (year <= 0){
+      cout << "Bad input";
+    }
+    else{
+      if (year % 4 == 0){
+        if (year % 100 == 0){
+          if (year % 400 == 0){
+            cout << year << " is a leap year";
+          }
+          else{
+            cout << year << " is not a leap year";
+          }
+        }
+        else{
+          cout << year << " is a leap year";
+        }
+      }
+      else{
+        cout << year << " is not a leap year";
+      }
+    }
+}
