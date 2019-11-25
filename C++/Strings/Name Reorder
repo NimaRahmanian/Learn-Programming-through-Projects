@@ -1,1 +1,20 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+  string full_name = "", formatted_name = "";
+  int space_index, name_len;
+
+  cout << "What is your first and last name?: ";
+  getline(cin, full_name); //must use getline when dealing with spaces in the input
+  name_len = full_name.length();
+  cout << "The length of your name: " << name_len << endl;
+    
+  space_index = full_name.find(" ");
+  formatted_name += full_name.substr(space_index + 1, full_name.length()); //last name
+  formatted_name += ", ";
+  formatted_name += full_name.substr(0, space_index); //first name
+
+  cout << "Your name is " << formatted_name;
+}
 
