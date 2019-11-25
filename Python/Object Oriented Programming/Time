@@ -1,0 +1,96 @@
+class Time:
+  def __init__(self, h = 0, m = 0, s = 0):
+    self.myHrs = h
+    self.myMins = m
+    self.mySecs = s
+  
+  def resetTime(self, h, m, s):
+    self.myHrs = h
+    self.myMins = m
+    self.mySecs = s
+
+  def increment(self):
+    if(self.mySecs == 59 and self.myMins == 59):
+      self.myHrs += 1 
+      self.mySecs = 0
+      self.myMins = 0
+    elif (self.mySecs == 59):
+      self.myMins+= 1
+      self.mySecs = 0
+    else:
+      self.mySecs+= 1
+
+  def __eq__(self, t):
+    if (self.mySecs == t.mySecs and self.myMins == t.myMins and self.myHrs == t.myHrs):
+      return True
+    else:
+      return False
+  
+  def __lt__(self, t):
+    if (self.myHrs < t.myHrs):
+      return True
+    elif (self.myHrs > t.myHrs):
+      return False
+    if (self.myMins < t.myMins):
+      return True
+    elif (self.myMins > t.myMins):
+      return False
+    if (self.mySecs < t.mySecs):
+      return True
+    return False
+  
+  def __str__(self):
+    return f"Time in hours: {self.myHrs} min: {self.myMins} sec: {self.mySecs}"
+
+  def takeFromHrs(self):      
+    self.myHrs -= 1
+    self.myMins += 60
+
+  def takeFromMins(self):
+    self.myMins -= 1
+    self.mySecs += 60
+
+  def difference(self, t):
+    if (self < t):
+      return t.subTimes(self)
+    else:
+      return self.subTimes(t)
+      
+
+  def subTimes(self, t):
+      if (self.mySecs < t.mySecs):
+        if (self.myMins == 0):
+          self.takeFromHrs()
+        self.takeFromMins()
+
+      newSecs = self.mySecs - t.mySecs
+
+      if (self.myMins < t.myMins):
+        self.takeFromHrs()
+      
+      newMins = self.myMins - t.myMins
+      newHrs = self.myHrs - t.myHrs
+
+      timeDifference = Time(newHrs, newMins, newSecs)
+      return timeDifference
+
+
+
+t1 = Time()
+t2 = Time(4, 20, 57)
+print(t1)
+print(t2)
+t1.resetTime(4, 19, 57)
+t1.increment()
+truth = (t1 < t2)
+print(f"Is t1 less than t2: {truth}")
+truth = (t1 == t2)
+print(f"Is t1 less than t2: {truth}")
+
+t3 = Time(5, 0, 1)
+t4 = Time(1, 0, 1)
+
+print(t3)
+print(t4)
+
+print(f"The difference between time3 and time4 is \n{t3.difference(t4)}")
