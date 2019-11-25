@@ -1,1 +1,27 @@
+#include <iostream>
+#include <string>
+using namespace std;
+int main() {
+  //variable declarations, it is good practice to initialize
+  //general formula -- type identifier = value;
+  int age = 0;
+  float gpa = 0.0, height = 0.0, weight = 0;
+  double temperature = 0.0;
+  char initial = 'c';
+  string name = "";
+  //output -- cout (stands for c out), use the << operator (giving the output something to say)
+  //works for all values as of right now
+  cout << "Hello, enter your name: ";
+  //input -- cin (stands for c in), use the >> operator (giving the variable something to hold)
+  cin >> name;
+  cout << "Your name is " << name << "\n";
+  cout << "And your age please: ";
+  cin >> age;
+  cout << "Your age is " << age << endl;
 
+  //feature of C++
+  //spaces between inputs in the command prompt can be treated as different inputs. however, make sure the user does so
+  cout << "What is your height(cm) and weight(N)";
+  cin >> height >> weight;
+  cout << "Your height and weight is " << height << " " << weight;
+}
