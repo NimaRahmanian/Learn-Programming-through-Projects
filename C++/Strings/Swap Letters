@@ -1,1 +1,18 @@
+#include <iostream>
+using namespace std;
 
+int main() {
+  string word, swapped;
+    
+  int len;
+    
+  cout << "Say the word: ";
+  cin >> word ;
+    
+  len = word.length();
+  swapped += word.at(len-1); //last char
+  swapped += word.substr(1, len-2); //inclusive of both
+  swapped += word.at(0); //first char
+    
+  cout << "Swapped phrase becomes: " << swapped;
+}
