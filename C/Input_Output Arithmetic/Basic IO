@@ -1,1 +1,25 @@
+#include <stdio.h>
 
+int main() {
+  //variable declarations, it is good practice to initialize
+  //general formula -- type identifier = value;
+  int age = 0;
+  float gpa = 0.0, height = 0.0, weight = 0;
+  double temperature = 0.0;
+  char initial = 'c';
+  char name[20] = "";
+  //output -- printf("", object). in the quotes, use the below sequences for different output values
+  //"%d" int -- "%f" float -- "%lf" double -- "%c" char -- "%s" character string
+  printf("Hello, enter your name: ");
+  //input -- scanf("", &address). in the quotes, use the same sequences for different input values
+  //for the address, you must use the '&' operator. this will be explained later. the exception is for character strings
+  scanf("%s", name);
+  printf("Your name is %s \n", name);
+  scanf("And your age please: %d", &age);
+  printf("Your age is %d\n", age);
+
+  //multiple inputs are simple
+  printf("What is your height(cm) and weight(N)");
+  scanf("%f %f", &height, &weight);
+  printf("Your height and weight is %f %f", height, weight);
+}
