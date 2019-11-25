@@ -1,1 +1,19 @@
-
+import java.util.*;
+class Main {
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String name = "";
+    int count = 0;
+    System.out.println("Enter name or \"XXX uppercase\" to quit: ");
+    name = sc.nextLine();
+    while (name.toUpperCase().equals("XXX") != true){
+      if (name.length() <= 5){
+        count++;
+      }
+      System.out.println("Enter name or \"XXX uppercase\" to quit: ");
+      name = sc.nextLine();
+      name = name.toUpperCase();
+    }
+    System.out.println("The number of names less than or equal to 5 letters is " + count);
+  }
+}
