@@ -1,1 +1,15 @@
+#include<stdio.h>
 
+int main() {
+  double base, height, area;
+    
+  printf("What is the base: ");
+  scanf("%lf", &base);
+
+  printf("What is the height: ");
+  scanf("%lf", &height);
+  
+  area = base * height;
+
+  printf("The area is: %lf" , area);
+}
