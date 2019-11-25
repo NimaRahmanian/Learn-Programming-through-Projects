@@ -1,0 +1,47 @@
+#include <stdio.h>
+int main() {
+  //str is stroke
+	int str;
+
+	printf("Number of strokes: ");
+	scanf("%d", &str);
+
+  //switch case conditions
+  //general format
+  //switch(condition)
+  //case(possible_condition) //if they match, this case will be executed
+  //if there is no break statement, execution will continue down the switch case
+	if (str > 0){
+    switch(str){	
+      case 1:
+        printf("hole in one");
+        break;
+      case 2:
+        printf("double eagle");
+        break;
+      case 3:
+        printf("eagle");
+        break;
+      case 4:
+        printf("birdie");
+        break;
+      case 5:
+        printf("par");
+        break;
+      case 6:
+        printf("bogey");
+        break;
+      case 7:
+        printf("double bogey");
+        break;
+      case 8:
+        printf("triple bogey");
+        break;
+      default:
+        printf("disaster");
+        break;
+    }
+	} else{
+		printf("Invalid input");
+	}
+}
