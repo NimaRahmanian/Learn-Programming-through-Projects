@@ -1,1 +1,30 @@
+#include<stdio.h>
 
+int main() {
+	int beep, spin;
+	
+	printf("If computer does beep, input 1. If computer does not beep, input 0. \nInput: ");
+	scanf("%d", &beep);
+
+	printf("If hard drive does spin, input 1. If hard drive does not spin, input 0.\nInput: ");
+	scanf("%d", &spin);
+
+  if ( !(beep == 1 || beep == 0) || !(spin == 1 || spin == 0) ){
+    printf("Bad input!");
+  } else{
+    if (beep == 1){
+      if (spin == 1){
+        printf("Contact Tech. Support");
+      } else{
+        printf("Check Drive Contacts");
+      }	
+    } else{
+      if (spin == 1){
+        printf("Check Speaker Contacts");
+      } else{
+        printf("Bring Computer to Repair Center");
+      }
+    }
+  }
+  
+}
