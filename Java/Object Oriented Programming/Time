@@ -1,0 +1,127 @@
+import java.util.*;
+class Time{
+  private int myHrs;
+  private int myMins;
+  private int mySecs;
+
+  public Time(){
+    myHrs = 0;
+    myMins = 0;
+    mySecs = 0;
+  }
+  public Time(int h, int m, int s){
+    myHrs = h;
+    myMins = m;
+    mySecs = s;
+  }
+  
+  public void resetTime(int h, int m, int s){
+    myHrs = h;
+    myMins = m;
+    mySecs = s;
+  }
+  public void increment(){
+    if(mySecs == 59 && myMins == 59){
+      myHrs++;
+      mySecs = 0;
+      myMins = 0;
+    }
+    else if (mySecs == 59){
+      myMins++;
+      mySecs = 0;
+    }
+    else{
+      mySecs++;
+    }
+  }
+
+  public boolean equals(Time t){
+    if (mySecs == t.mySecs && myMins == t.myMins && myHrs == t.myHrs)
+      return true;
+    else
+      return false;
+  }
+  public boolean lessThan(Time t){
+    if (myHrs < t.myHrs)
+      return true;
+    else if (myHrs > t.myHrs)
+      return false;
+    if (myMins < t.myMins)
+      return true;
+    else if (myMins > t.myMins)
+      return false;
+    if (mySecs < t.mySecs)
+      return true;
+    return false;
+  }
+  
+  public String toString(){
+    return "Time in hours: " + myHrs + " min: " + myMins + " sec: " + mySecs;
+  }
+
+  public void takeFromHrs(){
+    myHrs -= 1;
+    myMins += 60;
+  }
+  public void takeFromMins(){
+    myMins -= 1;
+    mySecs += 60;
+  }
+
+  public Time difference(Time t){
+    if (this.lessThan(t)){
+      return t.subTimes(this);
+    }
+    else{
+      return subTimes(t);
+    }
+  }
+
+  public Time subTimes(Time t){
+    if (mySecs < t.mySecs){
+      if (myMins == 0){
+        takeFromHrs();
+      takeFromMins();
+      }
+    }
+    int newSecs = mySecs - t.mySecs;
+
+    if (myMins < t.myMins){
+      takeFromHrs();
+    }
+    int newMins = myMins - t.myMins;
+    int newHrs = myHrs - t.myHrs;
+
+    Time timeDifference = new Time(newHrs, newMins, newSecs);
+    return timeDifference;
+  }
+
+}
+
+class Main {
+  public static void main(String[] args) {
+    System.out.println("Hello world!");
+    Time t1 = new Time();
+    Time t2 = new Time(1, 0, 1);
+
+    System.out.println(t1);
+    System.out.println(t2);
+
+    t1.resetTime(0, 1, 1);
+    //t1.increment();
+
+    boolean truth = t1.lessThan(t2);
+    System.out.println("Is t1 less than t2: " + truth);
+
+    truth = t1.equals(t2);
+    System.out.println("Is t1 less than t2: " + truth);
+
+    Time t3 = new Time(5, 0, 1);
+    Time t4 = new Time(1, 0, 1);
+
+    System.out.println(t3);
+    System.out.println(t4);
+
+    System.out.println("The difference between time3 and time4 is \n" + t3.difference(t4));
+  }
+}
