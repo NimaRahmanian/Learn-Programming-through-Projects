@@ -1,1 +1,28 @@
+#include<stdio.h>
 
+int main() {
+  double length = 0, width = 0, height = 0, volume = 0;
+  
+  printf("What is the length of the package: ");
+  scanf("%lf", &length);
+    
+  printf("What is the width of the package: ");
+  scanf("%lf", &width);
+    
+  printf("What is the height of the package: ");
+  scanf("%lf", &height);
+  //boolean operators are as follows:
+  //&& and, || or, ! not, and many more which are not frequently used
+  if ( (length > 10) || (width > 10) || (height > 10) ){
+    printf("Reject\n");
+  } else{
+    printf("Accept\n");
+    volume = length * height * width;
+    printf("The package dimensions: \n");
+    printf("%lf x %lf x %lf inches\n", length, width , height);
+    printf("The package volume: %lf \n" , volume);
+    double price = 0.5, cost;
+    cost = price * volume;
+    printf("The price of the package is : %lf\n", cost);
+  }
+}
