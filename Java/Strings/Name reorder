@@ -1,1 +1,21 @@
+import java.util.*;
+class Main {
+  public static void main(String[] args) {
+    String full_name = "", formatted_name = "";
+    Scanner sc = new Scanner(System.in);
+    int space_index = 0, name_len = 0;
 
+    System.out.print("What is your first and last name?: ");
+    full_name = sc.nextLine();
+    name_len = full_name.length();
+    System.out.println("The length of your name: " + name_len);
+    
+    space_index = full_name.indexOf(" ");
+    formatted_name += full_name.substring(space_index + 1); //last name
+    formatted_name += ", ";
+    formatted_name += full_name.substring(0, space_index); //first name
+
+    System.out.println("Your name is " + formatted_name);
+
+  }
+}
