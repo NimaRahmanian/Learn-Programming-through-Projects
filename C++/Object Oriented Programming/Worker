@@ -1,0 +1,71 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Worker{
+  private:
+    string myName;
+    double myHourlyWage;
+    bool isUnionMember;
+
+  public:
+    Worker(){
+      myName = "";
+      myHourlyWage = 0;
+      isUnionMember = false;
+    }
+    Worker(string name, double hourlyWage, bool isunion){
+      myName = name;
+      myHourlyWage = hourlyWage;
+      isUnionMember = isunion;
+    }
+
+    string getName(){
+      return myName;
+    }
+    double getHourlyWage(){
+      return myHourlyWage;
+    }
+    bool getUnionStatus(){
+      return isUnionMember;
+    }
+
+    double computerMedDed(int dependents){
+      if (myHourlyWage > 20){
+        return dependents*10;
+      }
+      else{
+        return 0;
+      }
+    }
+
+    void incrementWage(double amt){
+      myHourlyWage += amt;
+    }
+    void changeUnionStatus(){
+      if (isUnionMember){
+        isUnionMember = false;
+      }
+      else{
+        isUnionMember = true;
+      }
+    }
+
+    friend ostream &operator <<(ostream &output, const Worker w){
+      output << "Name: " << w.myName << " Wage: " << w.myHourlyWage << " Union: " << w.isUnionMember;
+      return output;
+    }
+};
+int main() {
+    Worker w1;
+    Worker w2("Shira", 24.5, true);
+
+    cout << w2.computerMedDed(5) << endl;
+
+    w1.changeUnionStatus();
+    w2.incrementWage(1.25);
+    w2.changeUnionStatus();
+
+    cout << w1 << endl;
+    cout << w2 << endl;
+}
