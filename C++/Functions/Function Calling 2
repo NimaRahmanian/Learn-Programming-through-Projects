@@ -1,1 +1,33 @@
+#include <iostream>
+using namespace std;
 
+double convertToCelsius(double fahrenheit){
+    double celsius = 0;
+    celsius = (fahrenheit - 32) * (5.0/9.0);
+    return celsius;
+  }
+void printCelsius(double celsius){
+    cout << "The equivalent in Celsius is " << celsius << endl;
+  }
+  
+double convertToFahrenheit(double celsius){
+    double fahrenheit = 0.0;
+    fahrenheit = (celsius * (9.0/5)) + 32;
+    return fahrenheit;
+  }
+void printFarenheit(double fahrenheit){
+    cout << "The equivalent in fahrenheit is " << fahrenheit << endl;
+  }
+
+int main() {
+    double fahrTemp = 0, celTemp = 0;
+    cout << "Enter degrees in Fahrenheit: ";
+    cin >> fahrTemp ;
+    celTemp = convertToCelsius(fahrTemp);
+    printCelsius(celTemp);    
+
+    cout << "Enter degrees in Celsius: ";
+    cin >> celTemp ;
+    fahrTemp = convertToFahrenheit(celTemp);
+    printFarenheit(fahrTemp);
+}
