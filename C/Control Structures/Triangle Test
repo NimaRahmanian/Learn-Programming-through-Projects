@@ -1,1 +1,29 @@
+#include<stdio.h>
 
+int main() {
+  double s1 = 0, s2 = 0, s3 = 0;
+  printf("What is s1: ");
+  scanf("%lf", &s1 );
+
+  printf("What is s2: ");
+  scanf("%lf", &s2 );
+
+  printf("What is s3: ");
+  scanf("%lf", &s3 );
+
+  if ( s1 <= 0 || s2 <= 0 || s3 <= 0 ){
+      printf("Positive, non negative numbers only");
+  } else{
+    if ( ((s1 + s2) > s3 ) && ( (s1 + s2) > s3 ) && ( (s2 + s3) > s1 ) ){
+      if ( s1 == s2 && s1 == s3 && s2 == s3 ){
+        printf("Equilateral");
+      } else if ( s1 == s2 || s1 == s3 || s2 == s3 ){
+        printf("Isosceles");
+      } else{
+        printf("Scalene");
+      }
+    } else{
+      printf("Sides do not make a triangle!");
+    }
+  }
+}
