@@ -1,0 +1,44 @@
+class Worker:
+  def __init__(self, name = "", hourlyWage = 0, union = False):
+    self.myName = name
+    self.myHourlyWage = hourlyWage
+    self.isUnionMember = union
+
+  def getName(self):
+    return self.myName
+  
+  def getHourlyWage(self):
+    return self.myHourlyWage
+  
+  def getUnionStatus(self):
+    return self.isUnionMember
+  
+  def computerMedDed(self, dependents):
+    if (self.myHourlyWage > 20):
+      return dependents*10
+    else:
+      return 0
+    
+  def incrementWage(self, amt):
+    self.myHourlyWage += amt
+  
+  def changeUnionStatus(self):
+    if (self.isUnionMember):
+      self.isUnionMember = False
+    else:
+      self.isUnionMember = True
+
+  def __str__(self):
+    return f"Name: {self.myName} Wage: {self.myHourlyWage} Union: {self.isUnionMember}"
+  
+w1 = Worker()
+w2 = Worker("Shira", 24.5, True)
+
+print(w2.computerMedDed(5))
+
+w1.changeUnionStatus()
+w2.incrementWage(1.25)
+w2.changeUnionStatus()
+
+print(w1)
+print(w2)
