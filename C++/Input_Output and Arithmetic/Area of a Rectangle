@@ -1,1 +1,16 @@
+#include <iostream>
+using namespace std;
 
+int main() {
+  double base, height, area;
+    
+  cout << "What is the base: ";
+  cin >> base;
+
+  cout << "What is the height: ";
+  cin >> height;
+  
+  area = base * height;
+
+  cout << "The area is: " << area;
+}
