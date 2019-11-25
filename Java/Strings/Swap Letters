@@ -1,1 +1,19 @@
-
+import java.util.*;
+class Main {
+  public static void main(String[] args) {
+    String word = new String(" ");
+    String swapped = new String(" ");
+    Scanner sc = new Scanner(System.in);
+    int len;
+    
+    System.out.print("Say the word: ");
+    word = sc.nextLine();
+    
+    len = word.length();
+    swapped += word.charAt(len -1); //last char
+    swapped += word.substring(1, len -1);
+    swapped += word.charAt(0); //first char
+    
+    System.out.println("Swapped phrase becomes: " + swapped);
+  }
+}
