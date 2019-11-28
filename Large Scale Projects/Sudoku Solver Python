@@ -1,0 +1,178 @@
+class Board:
+  def __init__(self):
+    self.dimen = 9
+    self.finale = [7, 0, 0, 0, 1, 4, 8, 0, 2, 
+                   8, 4, 0, 9, 0, 3, 5, 0, 1, 
+                   9, 6, 1, 2, 8, 0, 3, 0, 4, 
+                   0, 8, 0, 3, 4, 9, 1, 5, 7, 
+                   4, 1, 3, 0, 5, 7, 0, 2, 6, 
+                   0, 0, 9, 1, 2, 6, 4, 0, 8, 
+                   1, 0, 7, 0, 9, 0, 0, 8, 3, 
+                   6, 9, 0, 7, 3, 8, 2, 0, 5, 
+                   3, 0, 8, 0, 6, 1, 0, 4, 0]
+    self.intercambio = []
+    self.storage_possibilities = {}
+
+    self.makeIndex()
+    self.intercambio = self.finale.copy()
+
+    self.current_neg = -1
+
+  def not_good(self):
+    if self.current_neg in self.finale:
+      return True
+    else:
+      return False
+
+  #class method
+  def same(self, lil):
+    #are there any repeated values in list lil?
+    #lil can be a column or a row
+    lil.sort()
+    for i in list(range(len(lil)-1)):
+      a = lil[i]
+      b = lil[i+1] #cool why this doesn't blow up
+      if a == b: #if, for any number, the one to its right is the same, automatic fail
+        return True #there is a same!
+    return False
+
+  def makeIndex(self):
+  #make negative numbers for the 0 and spot in dictionary
+    c = 1
+    for i in self.finale: 
+      if (i == 0):
+        neg_index = c * -1
+        index_i = self.finale.index(i)
+        self.finale[index_i] = neg_index
+        self.storage_possibilities[neg_index] = 0 #make a key and value in the dictionary for possible values
+        c+= 1 #increment after one has been used
+
+  def display(self):
+    #return the list in a sudoku format, easy to read
+    for i in range(self.dimen):
+      print(self.get_row(self.intercambio, i)) #printing each row to make a stack
+    print("--------------------------")
+  
+  def find_column(self, lil, element):
+    y = 0
+    while 1==1: #what column is it in, what are the numbers already taken
+      column = self.get_column(lil, y)
+      if element in column:
+        return y
+      y+= 1 #check the next column
+
+  def get_column(self, lil, y):
+    digits = []
+    for i in list(range(0, (self.dimen**2), self.dimen)):
+      #i is the index of an element in a Column
+      #w will translate the value to the right w units
+      i = i+y #this is the ith element of the wth column
+      digits.append(lil[i])
+    return digits
+
+  def get_unique_column(self, y):
+    #returns the non negative numbers found in intercambio
+    unique_numbers = set(list(range(1, self.dimen+1))) #what are the possible numbers
+    #if 9x9, this will return {1, 2, 3, 4, 5, 6, 7, 8, 9}
+    found_numbers = set(self.get_column(y)) #get the yth row of the list yup
+    return unique_numbers.difference(found_numbers)
+
+  def find_row(self, lil, element):
+    y = 0
+    while 1==1: #what row is it in, what are the numbers already taken
+      row = self.get_row(lil, y)
+      if element in row:
+        return y
+      y+= 1 #check the next row
+
+  def get_row(self, lil, y):
+  #returns a list of the elements in the row number w
+    return lil[(self.dimen*y) : (self.dimen*(y+1))]
+
+  def get_unique_row(self, y):
+    #returns the non negative numbers found in intercambio
+    unique_numbers = set(list(range(1, self.dimen+1))) #what are the possible numbers
+    #if 9x9, this will return {1, 2, 3, 4, 5, 6, 7, 8, 9}
+    found_numbers = set(self.get_row(self.intercambio, y)) #get the yth row of the list yup
+    return unique_numbers.difference(found_numbers)
+
+  def possiNum(self, element): 
+    #find the element in finale, not intercambio
+
+    #receive the row and column number of the element
+    row_num_finale = self.find_row(self.finale, element)
+    column_num_finale = self.find_column(self.finale, element)
+
+    #return the values (set) in the row and column of the final puzzle
+    #all nonpositive numbers are disregarded
+    digits_in_row = self.get_row(self.intercambio, row_num_finale)
+    digits_in_column = self.get_column(self.intercambio, column_num_finale)
+    
+    #what are the possible numbers
+    inter = set([i for i in list(range(1, self.dimen+1))]) 
+    inter = inter.difference(digits_in_row)
+    inter = inter.difference(digits_in_column)
+    #inter represents the set of not seen in the row and column which element sits
+    self.storage_possibilities[self.current_neg] = inter #update the possibility list
+    return inter
+
+  def assignment(self): 
+    x = self.finale.index(self.current_neg)
+    self.intercambio[x] = self.storage_possibilities[self.current_neg].pop()
+
+b = Board()
+
+while True:
+  while (b.not_good()):
+    #go forwards
+    potential = b.possiNum(b.current_neg)
+    if len(potential) == 0:
+      break
+    b.assignment()
+    b.current_neg -= 1 #find later neg
+    b.display()
+  else:
+    #this will execute if the b.not_good() becomes False(when the puzzle is solved)
+    #if this statement is executed, then the loop will terminate
+    break
+  while True:
+    #go backwards
+    b.current_neg += 1 #find earlier neg
+    potential = b.storage_possibilities[b.current_neg]
+    if len(potential) == 0:
+      continue
+    b.assignment()
+    b.current_neg -= 1
+    b.display()
+    break
+
+print("game over")
+
+
+"""b = Board.Board()
+
+while True:
+  while (b.not_good()):
+    #go forwards
+    potential = b.possiNum(b.current_neg)
+    if len(potential) == 0:
+      break
+    b.assignment()
+    b.current_neg -= 1 #find later neg
+    b.display()
+  else:
+    #this will execute if the b.not_good() becomes False(when the puzzle is solved)
+    #if this statement is executed, then the loop will terminate
+    break
+  while True:
+    #go backwards
+    b.current_neg += 1 #find earlier neg
+    potential = b.storage_possibilities[b.current_neg]
+    if len(potential) == 0:
+      continue
+    b.assignment()
+    b.current_neg -= 1
+    b.display()
+    break
+
+print("game over")"""
